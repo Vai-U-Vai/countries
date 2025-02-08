@@ -1,0 +1,75 @@
+# Общие игнорируемые файлы и папки
+
+# Операционные системы
+.DS_Store
+Thumbs.db
+
+# Редакторы и IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*.log
+
+# Symfony
+/var/
+/vendor/
+/public/bundles/
+/public/build/
+/symfony.lock
+composer.lock
+
+# Кэш Symfony
+/config/packages/*.yaml
+!/config/packages/framework.yaml
+/translations/*
+!/translations/.gitkeep
+
+# Логи Symfony
+/log/*
+!/log/.gitkeep
+
+# Зависимости JavaScript (если есть)
+/node_modules/
+package-lock.json
+yarn.lock
+
+# Docker
+.dockerignore
+
+# Файлы окружения (НИКОГДА не коммитьте .env!)
+.env
+*.env
+/config/secrets/*
+!/config/secrets/.gitignore
+
+# Временные файлы и папки
+/tmp/
+/cache/
+/sessions/
+*.tmp
+
+# Загруженные файлы (если их не нужно отслеживать)
+/public/uploads/
+
+# Папка с данными (если она не должна быть в репозитории)
+/data/
+
+# Другие файлы и папки, которые не должны быть в репозитории
+*.sql
+*.bak
+*.dmp
+
+# Database SQLite
+*.db
+*.sqlite
+
+###> symfony/flex ###
+/config/packages/*.(yaml|xml)
+!/config/packages/doctrine.yaml
+!/config/packages/messenger.yaml
+!/config/packages/security.yaml
+!/config/packages/translation.yaml
+!/config/packages/validator.yaml
+!/config/packages/workflow.yaml
+###< symfony/flex ###

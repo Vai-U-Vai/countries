@@ -1,0 +1,38 @@
+services:
+  app:
+    container_name: countries-app
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./app:/var/www/html
+      - ./.env:/var/www/html/.env
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      XDEBUG_MODE: debug
+      XDEBUG_CONFIG: "client_host=host.docker.internal client_port=9003"
+    
+  db:
+    container_name: countries-db
+    image: mysql:8.0
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: countries
+    volumes:
+      - ~/mysql:/var/lib/mysql
+  nginx:
+    container_name: countries-app-server
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./app:/var/www/html
+    depends_on:
+      - app
+   
